@@ -50,7 +50,9 @@ module.exports = {
             return response.status(401).json({ error: 'Operation not permitted.' });
         }
 
-        await  (await connection('incidents').where('id', id)).delete();
+        await connection('incidents')
+		     .where('id', id)
+			 .del();
         
         return response.status(204).send();
     }
